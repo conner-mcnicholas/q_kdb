@@ -1,4 +1,8 @@
-nby:(,/){update year:x from flip (`name`sex`counter)!("*SI";",") 0: hsym x} each `$1_system"ls "
+system "cd names"
+
+nby:(,/){update year:"I"$4#3_string x from flip (`name`sex`counter)!("*SI";",") 0: hsym x} each `$system "ls"
+
+system "cd .."
 
 conyrcount:0!`year`counter xasc select sum counter by name,year from nby where name in ("Conner";"Conor";"Connor";"Coner")
 
