@@ -45,7 +45,7 @@ Michael   M   9717    2020 20
 "this will show popularity change of single name over time"
 "sample results for Liam:"
 
-select from yearlyRank where name = `Liam,sex=`M
+show select from yearlyRank where name = `Liam,sex=`M
 
 /
 )select from yearlyRank where name = `Liam,sex=`M
