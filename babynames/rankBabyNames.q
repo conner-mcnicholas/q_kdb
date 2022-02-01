@@ -48,7 +48,7 @@ Michael   M   9717    2020 20
 show select from yearlyRank where name = `Liam,sex=`M
 
 /
-)select from yearlyRank where name = `Liam,sex=`M
+ )select from yearlyRank where name = `Liam,sex=`M
 name sex counter year rnk 
 --------------------------
 Liam M   19659   2020 1   
