@@ -16,6 +16,12 @@ yearlyRank:raze {update rnk:ctrD[x]?counter from yrDict x} each yrs
 
 show select from yearlyRank where year = 2020
 
+karen:`year`karens`ranking`pctile xcol `year`counter`rnk`pctile xcols delete name,sex,totalNames from select from yearlyRank where name = `Karen,sex=`F
+
+save `:karen.csv
+
+show karen
+
 /
 name      sex counter year rnk
 ------------------------------
