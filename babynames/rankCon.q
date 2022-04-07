@@ -3,16 +3,18 @@
 system "cd names"
 
 nby:(,/){update year:"J"$4#3_string x from flip (`name`sex`counter)!("SSJ";",") 0: hsym x} each `$system "ls"
+nbym:select from nby where sex = `M
+nbyf:select from nby where sex = `F
 
 concnt:([]name:`ConNEOr;sex:`M;counter:0N;year:1880 + til 141)
-{update counter:(sum exec counter from nby where name in `Conner`Connor`Conor,sex=`M,year = x) from `concnt where year = x} each concnt`year
-nby:`year`sex`counter`name xasc (delete from nby where name in `Conner`Connor`Conor),concnt
+{update counter:(sum exec counter from nbym where name in `Conner`Connor`Conor,sex=`M,year = x) from `concnt where year = x} each concnt`year
+nbym:`year`sex`counter`name xasc (delete from nbym where name in `Conner`Connor`Conor),concnt
 
 system "cd .."
 
-yrDict:yrs!{`counter xdesc select from nby where year  = x} each yrs:desc distinct nby`year
+yrDict:yrs!{`counter xdesc select from nbym where year  = x} each yrs:desc distinct nbym`year
 
-ctrD:raze {(enlist x)!enlist (1+til count distinct (yrDict x)`counter)!distinct (yrDict x)`counter} each yrs
+ctrD:raze {(enlist x)!enlist (1+til count (yrDict x)`counter)!(yrDict x)`counter} each yrs
 
 yearlyRank:raze {update rnk:ctrD[x]?counter from yrDict x} each yrs
 
@@ -22,7 +24,7 @@ show select from yearlyRank where year = 2020
 
 update totalNames:count distinct name by year from `yearlyRank;
 update pctile:100*rnk%totalNames from `yearlyRank;
-conner:`year`conNEOrs`ranking`pctile xcol `year`counter`rnk`pctile xcols delete name,sex,totalNames from select from yearlyRank where name = `ConNEOr,sex=`M
+conner:`year`conNEOrs`pctile`ranking xcols `year`conNEOrs`ranking`pctile xcol `year`counter`rnk`pctile xcols delete name,sex,totalNames from select from yearlyRank where name = `ConNEOr,sex=`M
 
 1 "\n\ntaking a peek at the trend of Conner or Connor or Conor (aggregating and ranking as one name)...\n\n" ;
 
