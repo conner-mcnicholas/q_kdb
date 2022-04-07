@@ -1,5 +1,7 @@
 # q_kdb
-q scripts for utility/curiosity
+q scripts for utility/curiosity.  
+
+## For example, "Baby Names"
 
 Timeseries analysis of annual baby names counts from US Census data.
 
