@@ -2,7 +2,11 @@
 
 system "cd names"
 
-nby:(,/){update year:"I"$4#3_string x from flip (`name`sex`counter)!("SSI";",") 0: hsym x} each `$system "ls"
+nby:(,/){update year:"J"$4#3_string x from flip (`name`sex`counter)!("SSI";",") 0: hsym x} each `$system "ls"
+
+concnt:([]name:`ConNEOr;sex:`M;counter:0N;year:1880 + til 141)
+{update counter:(sum exec counter from nby where name in `Conner`Connor`Conor,sex=`M,year = x) from `concnt where year = x} each concnt`year
+nby:`year`sex`counter`name xasc (delete from nby where name in `Conner`Connor`Conor),concnt
 
 system "cd .."
 
@@ -16,15 +20,15 @@ yearlyRank:raze {update rnk:ctrD[x]?counter from yrDict x} each yrs
 
 show select from yearlyRank where year = 2020
 
-update totalNames:count distinct name by year from `yearlyRank;
+update totalNames:(max;rnk) fby year from `yearlyRank;
 update pctile:100*rnk%totalNames from `yearlyRank;
-karen:`year`karens`ranking`pctile xcol `year`counter`rnk`pctile xcols delete name,sex,totalNames from select from yearlyRank where name = `Karen,sex=`F
+conner:`year`conNEOrs`ranking`pctile xcol `year`counter`rnk`pctile xcols delete name,sex,totalNames from select from yearlyRank where name = `ConNEOr,sex=`M
 
-1 "\n\ntaking a peek at the public's growing disdain for a certain personality type and demographic...\n\n" ;
+1 "\n\ntaking a peek at the trend of Conner or Connor or Conor (aggregating and ranking as one name)...\n\n" ;
 
-show karen
+show conner
 
-save `:karen.csv;
+save `:conner.csv;
 
 /
 name      sex counter year rnk

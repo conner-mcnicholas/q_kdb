@@ -16,7 +16,8 @@ yearlyRank:raze {update rnk:ctrD[x]?counter from yrDict x} each yrs
 
 show select from yearlyRank where year = 2020
 
-update totalNames:(max;rnk) fby year from `yearlyRank;
+//update totalNames:(max;rnk) fby year from `yearlyRank;
+update totalNames:count distinct name by year from `yearlyRank;
 update pctile:100*rnk%totalNames from `yearlyRank;
 james:`year`jameses`ranking`pctile xcol `year`counter`rnk`pctile xcols delete name,sex,totalNames from select from yearlyRank where name = `James,sex=`M
 
