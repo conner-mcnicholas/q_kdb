@@ -15,6 +15,7 @@ fpa[.8;.85;.53;.38]
 0.73
 \
 fp[.8;.85;.53;.38]
+\\
 /
 Learning Overall Republican Support Repeal of Roe v. Wade = 80%
 
@@ -30,20 +31,3 @@ then we find...
 
 73% of Republican Women Support Repealing Roe v. Wade
 \
-fp[.8;.99;.53;.38]
-/
-Learning Overall Republican Support Repeal of Roe v. Wade = 80%
-
-if we know...
-Republican Party is Comprised By:
-53% of All Men
-38% of All Women
-
-and we assume...
-Male Republican Support Repeal of Roe v. Wade = 99% ...
-
-then we find...
-
-53.5% of Republican Women Support Repealing Roe v. Wade
-\
-\\
