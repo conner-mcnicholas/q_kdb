@@ -1,14 +1,16 @@
 \c 10 3000
 
 system "cd names"
+cmdarg:(.Q.opt .z.x)`name`sex
+aname:first cmdarg 0
+asex:`$first cmdarg 1
 
 nby:(,/){update year:"J"$4#3_string x from flip (`name`sex`counter)!("SSJ";",") 0: hsym x} each `$system "ls"
-nbym:select from nby where sex = `M
-nbyf:select from nby where sex = `F
+nby:select from nby where sex = asex
 
 system "cd .."
 
-yrDict:yrs!{`counter xdesc select from nbym where year  = x} each yrs:desc distinct nbym`year
+yrDict:yrs!{`counter xdesc select from nby where year  = x} each yrs:desc distinct nby`year
 
 ctrD:raze {(enlist x)!enlist (1+til count (yrDict x)`counter)!(yrDict x)`counter} each yrs
 
@@ -21,20 +23,13 @@ show select from yearlyRank where year = 2020
 //update totalNames:(max;rnk) fby year from `yearlyRank;
 update totalNames:count distinct name by year from `yearlyRank;
 update pctile:100*rnk%totalNames from `yearlyRank;
-alex:`year`alexs`pctile`ranking xcols `year`alexs`ranking`pctile xcol `year`counter`rnk`pctile xcols delete name,sex,totalNames from select from yearlyRank where name = `Alex,sex=`M
 
-1 "\n\ntaking a peek at the trend of Alexsss...\n\n" ;
 
-show alex
 
-save `:alex.csv;
+nametab:(`year,(`$aname),`pctile`ranking) xcols (`year,(`$aname),`ranking`pctile) xcol `year`counter`rnk`pctile xcols delete name,sex,totalNames from select from yearlyRank where name = `$aname
 
-/
-name      sex counter year rnk
-------------------------------
-Alex      M   19659   2020 1
-Noah      M   18252   2020 2
-Olivia    F   17535   2020 3
-Emma      F   15581   2020 4
-Oliver    M   14147   2020 5
-\
+1 "\n\ntaking a peek at the trend...\n\n" ;
+
+show nametab
+(hsym `$aname,("_",(string asex)),".csv") 0: csv 0: nametab
+
